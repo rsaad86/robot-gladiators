@@ -90,19 +90,46 @@ var fight = function (enemyName) {
   }
 };
 
-for (var i = 0; i < enemyNames.length; i++) {
-  if (playerHealth > 0) {
-    window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+var startGame = function () {
+  playerAttack = 10;
+  playerHealth = 100;
+  playerMoney = 10;
 
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    debugger;
-    fight(pickedEnemyName);
-  } else {
-    window.alert("You have lost your robot in battle! Game Over!");
-    break;
+  for (var i = 0; i < enemyNames.length; i++) {
+    if (playerHealth > 0) {
+      window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+
+      var pickedEnemyName = enemyNames[i];
+
+      enemyHealth = 50;
+
+      fight(pickedEnemyName);
+    } else {
+      window.alert("You have lost your robot in battle! Game Over!");
+      break;
+    }
   }
-}
+};
+startGame();
+
+var endGame = function () {
+  if (playerHealth > 0) {
+    window.alert("Great job, you've survived the game! You now have a score");
+  } else {
+    window.alert("You've lost your robot in battle");
+  }
+
+  window.alert("The game has now ended. Let's see how you did");
+
+  var playAgainConfirm = window.confirm("Would you like to play again?");
+
+  if (playAgainConfirm) {
+    startGame();
+  } else {
+    window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+  }
+};
+endGame();
 //this is also a comment, using two slashes
 /*A console log test
 console.log(10 + 10);
