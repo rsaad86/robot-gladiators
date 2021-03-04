@@ -90,6 +90,50 @@ var fight = function (enemyName) {
   }
 };
 
+var shop = function () {
+  var showOptionPrompt = window.prompt(
+    "Would you like to refill your health, Upgrade your attack or Leave the store? Please enter one: 'REFILL', 'UPGRADE', or  'LEAVE' to make a choice."
+  );
+  switch (showOptionPrompt) {
+    case "REFILL":
+    case "refill":
+      if (playerMoney >= 7) {
+        window.alert("Refilling player's health by 20 for 7 dollars");
+
+        //increase health and decrease money
+        playerHealth = playerHealth + 20;
+        playerMoney = playerMoney - 7;
+        break;
+      } else {
+        window.alert("You don't have enough money!");
+      }
+    case "UPGRADE":
+    case "upgrade":
+      if (playerMoney >= 7) {
+        window.alert("Upgrading player's attack by 6 for 7 dollars");
+
+        //increase attack and decrease money
+        playerAttack = playerAttack + 6;
+        playerMoney = playerMoney - 7;
+        break;
+      } else {
+        window.alert("You don't have enough money!");
+      }
+    case "LEAVE":
+    case "leave":
+      window.alert("Leaving the store.");
+
+      //do nothing, so function will end
+      break;
+    default:
+      window.alert("You did not pick a valid option. Try again.");
+
+      //call shop() to force player to pick a valid option
+      shop();
+      break;
+  }
+};
+
 var startGame = function () {
   playerAttack = 10;
   playerHealth = 100;
@@ -104,6 +148,14 @@ var startGame = function () {
       enemyHealth = 50;
 
       fight(pickedEnemyName);
+      if (playerHealth > 0 && i < enemyNames.length - 1) {
+        var storeConfirm = window.confirm(
+          "The fight is over, visit the store before the next round?"
+        );
+        if (storeConfirm) {
+          shop();
+        }
+      }
     } else {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
@@ -130,6 +182,7 @@ var endGame = function () {
   }
 };
 endGame();
+
 //this is also a comment, using two slashes
 /*A console log test
 console.log(10 + 10);
