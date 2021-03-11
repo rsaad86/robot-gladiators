@@ -151,27 +151,22 @@ var fight = function (enemy) {
 
 var shop = function () {
   var showOptionPrompt = window.prompt(
-    "Would you like to refill your health, Upgrade your attack or Leave the store? Please enter one: 'REFILL', 'UPGRADE', or  'LEAVE' to make a choice."
+    "Would you like to refill your health, Upgrade your attack or Leave the store? Please enter one: 1 for 'REFILL', 2 for 'UPGRADE', or  3 for 'LEAVE' to make a choice."
   );
+
+  showOptionPrompt = parseInt(showOptionPrompt);
   switch (showOptionPrompt) {
-    case "REFILL":
-    case "refill":
+    case 1:
       playerInfo.refillHealth();
-      //increase health and decrease money
-      playerInfo.health = playerInfo.health + 20;
-      playerInfo.money = playerInfo.money - 7;
+
       break;
-    case "UPGRADE":
-    case "upgrade":
+    case 2:
       playerInfo.upgradeAttack();
       break;
-
-    case "LEAVE":
-    case "leave":
-      window.alert("Leaving the store.");
-
-      //do nothing, so function will end
+    case 3:
+      window.alert("Leaving the store");
       break;
+
     default:
       window.alert("You did not pick a valid option. Try again.");
 
